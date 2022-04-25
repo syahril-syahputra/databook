@@ -6,7 +6,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { dataContext } from '../App';
 const SideBar = () => {
 
-    const [data, dispatchData] = useContext(dataContext)
+    const [data] = useContext(dataContext)
     const location = useLocation()
     const [selected, setselected] = useState(location.pathname.split("/")[1])
     const [sideBar, setsideBar] = useState(0)
@@ -26,7 +26,8 @@ const SideBar = () => {
             location.pathname.split("/")[1] === "" ? setselected(1) : setselected(location.pathname.split("/")[1])
         }
 
-    }, [])
+
+    }, [location.pathname])
 
 
 

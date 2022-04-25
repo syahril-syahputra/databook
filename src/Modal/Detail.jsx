@@ -6,19 +6,23 @@ const Detail = props => {
     const [visible, setvisible] = props.visible
     const [bookmarked, setbookmarked] = useState(false)
     useEffect(() => {
-       
-        if (localStorage.getItem("bookmark") === null) {
-            localStorage.setItem('bookmark', JSON.stringify([]))
+
+        if (visible) {
+
+            if (localStorage.getItem("bookmark") === null) {
+                localStorage.setItem('bookmark', JSON.stringify([]))
+            }
+            const storage = JSON.parse(localStorage.getItem("bookmark"));
+            const data = storage.findIndex(x => x.id === props.data.id)
+            if (data >= 0) {
+                setbookmarked(true)
+            } else {
+                setbookmarked(false)
+            }
+            //eslint-disable-next-line react-hooks/exhaustive-deps
         }
-        const storage = JSON.parse(localStorage.getItem("bookmark"));
-        const data = storage.findIndex(x => x.id === props.data.id)
-        if (data >= 0) {
-            setbookmarked(true)
-        } else {
-            setbookmarked(false)
-        }
-    }, [visible])
-    
+    }, [visible, props])
+
     const bookmark = () => {
         if (localStorage.getItem("bookmark") === null) {
             localStorage.setItem('bookmark', JSON.stringify([]))
@@ -44,7 +48,7 @@ const Detail = props => {
 
                         <div className='flex flex-col md:flex-row items-center bg-gray-200 rounded-md overflow-hidden shadow-gray-300 shadow-md justify-center md:w-3/4 md:m-2'>
 
-                            <img src={props.data.cover_url} className="h-56 object-contain" />
+                            <img alt='' src={props.data.cover_url} className="h-56 object-contain" />
                             <div className="p-2 bg-gray-100 md:h-56 mt-5 md:mt-0 flex-1 flex  flex-col">
                                 <span className='block text-gray-700 font-bold'>{props.data.title}</span>
                                 <div className='flex-1 text-sm my-4'>{props.data.description}</div>
@@ -64,7 +68,7 @@ const Detail = props => {
                         </div>
                         <div className='flex justify-start w-full'>
                             <button onClick={bookmark} className='flex bg-gray-200 cursor-pointer hover:bg-gray-300 w-full md:w-min shadow-md p-2 justify-center mt-5 items-center rounded-md'>
-                                <FaIcons.FaStar size={20} className={" mr-1 " + (bookmarked ? "text-yellow-500" :  "text-gray-700")} /><label className='text-gray-700 cursor-pointer font-bold'>BookMark</label>
+                                <FaIcons.FaStar size={20} className={" mr-1 " + (bookmarked ? "text-yellow-500" : "text-gray-700")} /><label className='text-gray-700 cursor-pointer font-bold'>BookMark</label>
                             </button>
                         </div>
                     </div>

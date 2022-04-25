@@ -5,14 +5,12 @@ import { Outlet } from 'react-router-dom'
 import { dataContext } from '../App'
 import axios from 'axios'
 
-import { useLocation } from 'react-router-dom'
 
 const HomeScreen = () => {
 
   const [data, dispatchData] = useContext(dataContext)
 
   const [categoryLoading, setcategoryLoading] = useState(false)
-  const location = useLocation()
 
   useEffect(() => {
     if (data.category.length === 0 && !categoryLoading) {
@@ -26,7 +24,7 @@ const HomeScreen = () => {
       })
 
     }
-  }, [])
+  }, [categoryLoading, data, dispatchData])
 
 
 

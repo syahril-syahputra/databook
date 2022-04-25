@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton'
 const CardLoading = () => {
     return (
         <div className=' flex  bg-white m-2 border-gray-200  border hover:bg-gray-200 shadow-md shadow-gray-400 rounded-md overflow-hidden'>
