@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useCallback, useRef, useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { dataContext } from '../App'
+import * as FaIcons from "react-icons/fa"; 
 import Card from '../components/book/Card'
 import { Dots } from "react-activity";
 
@@ -115,6 +115,18 @@ const ListBook = props => {
         }
         return loadings;
     }
+
+    const [searchText, setsearchText] = useState("")
+    const filterData = () => {
+        // return data.filter(v => v.namaPelanggan.toLowerCase().includes(searchText.toLowerCase()))
+        return dataBook.filter(item => {
+            return item.title.toLowerCase().search(searchText.toLowerCase()) !== -1 || 
+             item.authors.some(x => x.toLowerCase().search(searchText.toLowerCase()) !== -1)
+        })
+        // return dataBook;
+        // return Object.keys(item).some(key => item[key].toString().search(searchValue) !== -1);
+    }
+    
     return (
         <div className=''>
             <Detail visible={[detailVisible, setdetailVisible]} data={selectedBook} />
@@ -142,18 +154,24 @@ const ListBook = props => {
                     //         return <Card callBack={callBack} key={index} item={item} />
                     //     })
                     //     }
-                    <div inView={inView}>
+                    <div>
+                        <div className='flex p-3 items-center border rounded-lg border-gray-300'>
+                        <FaIcons.FaSearch className='mr-2' size={20} color="#AAAAAA" />
+              
+                            <input className=' flex-1 outline-none text-gray-600' type="text" value={searchText} placeholder='Search' onChange={e => setsearchText(e.target.value)} />
+                            
+                        </div>
                         <div
                             className='grid  grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  '
                         >
-                            {dataBook.map((item, index) => {
+                            {filterData().map((item, index) => {
                                 return <Card callBack={callBack} key={index} item={item} />
                             })
                             }
 
                         </div>
                         {
-                            isLastPage ? null :
+                            isLastPage || searchText !== "" ? null :
                                 isLoadingMore ?
                                     <div className=' text-center items-center justify-center p-2 rounded-xl'>
                                          <Dots color="gray" />

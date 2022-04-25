@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import * as FaIcons from "react-icons/fa"; 
+import * as FaIcons from "react-icons/fa";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { dataContext } from '../App';
@@ -20,10 +20,10 @@ const SideBar = () => {
 
     useEffect(() => {
         location.pathname.split("/")[1] === "" ? setselected(1) : setselected(location.pathname.split("/")[1])
-       
+
     }, [])
 
-    
+
 
     // props.match.params
     return (
@@ -37,13 +37,17 @@ const SideBar = () => {
             </div>
             <nav className={"fixed z-10 md:z-40 md:pt-16 left-0 pt-2 border-r-2 border-gray-400 shadow-md shadow-gray-400 top-12 md:top-0 md:bottom-0 bg-gray-100 p-5 w-full md:w-56 " + (sideBar ? "visible" : "invisible") + " md:visible"}>
                 <ul className="nav-menu-items">
-
+                    <li key={0} className={"active:bg-gray-300 cursor-pointer hover:rounded-md flex items-center hover:bg-gray-200 hover:border-red-300  w-full py-2 px-2 mb-2 align-middle " + (0 === parseInt(selected) ? "bg-gray-500 rounded-md" : "")}>
+                        <span><FaIcons.FaStar size={20} className="text-yellow-500" /></span>
+                        <span className={"font-serif text-xs ml-2 font-bold " + (0 === parseInt(selected) ? "text-white" : "text-gray-700 ")}>BookMark</span>
+                    </li>
+                    <hr className='mb-2 border-gray-300' />
                     {
                         data.category.length === 0 ?
 
                             <SkeletonTheme height={30} baseColor="#CCCCCC" highlightColor="#DDDDDD">
                                 <p className='pb-10'>
-                                    <Skeleton  count={6} />
+                                    <Skeleton count={6} />
                                 </p>
                             </SkeletonTheme>
                             :
