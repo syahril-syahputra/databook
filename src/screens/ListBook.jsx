@@ -49,6 +49,7 @@ const ListBook = props => {
         setdataBook([])
         setpage(0)
         setisLastPage(false)
+        setsearchText("")
     }, [category])
 
     const getData = () => {
@@ -89,16 +90,7 @@ const ListBook = props => {
 
     }
 
-    //start
-    const [hasMoreItems, sethasMoreItems] = useState(true)
-    const loadMore = () => {
-        console.log(page)
-        if (!isLoadingMore) {
-            setpage(page + 1)
-            // getDataMore()
-        }
-    }
-    //emd
+ 
 
 
     const [detailVisible, setdetailVisible] = useState(false)
@@ -117,11 +109,15 @@ const ListBook = props => {
     }
 
     const [searchText, setsearchText] = useState("")
+    function regex_escape(str) {
+        return str.replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\-]', 'g'), '\\$&');
+    }
     const filterData = () => {
         // return data.filter(v => v.namaPelanggan.toLowerCase().includes(searchText.toLowerCase()))
         return dataBook.filter(item => {
-            return item.title.toLowerCase().search(searchText.toLowerCase()) !== -1 || 
-             item.authors.some(x => x.toLowerCase().search(searchText.toLowerCase()) !== -1)
+            const text = regex_escape(searchText.toLowerCase())
+            return item.title.toLowerCase().search(text) !== -1 || 
+             item.authors.some(x => x.toLowerCase().search(text) !== -1)
         })
         // return dataBook;
         // return Object.keys(item).some(key => item[key].toString().search(searchValue) !== -1);
@@ -158,14 +154,14 @@ const ListBook = props => {
                         <div className='flex p-3 items-center border rounded-lg border-gray-300'>
                         <FaIcons.FaSearch className='mr-2' size={20} color="#AAAAAA" />
               
-                            <input className=' flex-1 outline-none text-gray-600' type="text" value={searchText} placeholder='Search' onChange={e => setsearchText(e.target.value)} />
+                            <input className=' flex-1 outline-none text-gray-600' type="text" value={searchText} placeholder='Search' onChange={e => {setsearchText(e.target.value)}} />
                             
                         </div>
                         <div
                             className='grid  grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  '
                         >
                             {filterData().map((item, index) => {
-                                return <Card callBack={callBack} key={index} item={item} />
+                                return <Card search={searchText} callBack={callBack} key={index} item={item} />
                             })
                             }
 

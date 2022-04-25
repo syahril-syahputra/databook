@@ -76,7 +76,7 @@ const BookMark = props => {
                     className='grid  grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  '
                 >
                     {filterData().map((item, index) => {
-                        return <Card callBack={callBack} key={index} item={item} />
+                        return <Card search={searchText} callBack={callBack} key={index} item={item} />
                     })
                     }
 
