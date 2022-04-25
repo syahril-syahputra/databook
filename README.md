@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+This Is For Online Test - Frontend Engineer - SejutaCita 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fitur
+1. Retrive All Category
+2. Retrive Book. i'm using 12 book per page. 
+3. instead of using pagination. I prefer to use Infinity Scroll because the backend itself doesn't display the number of books per category so it's better to use Infinity Scroll when we don't know how many pages are needed for each category. and it will be better for user experience,
+4. search for books from all data books that have been retrieved
+5. Bookmark. when the user presses the bookmark button, the application will save the book data to the local storage browser.
+6. responsive design
 
-## Available Scripts
+Feedback fro backend developer team
+1. for the link to retrieve the book data, instead of using like this: 
+  https://asia-southeast2-sejutacita-app.cloudfunctions.net/fee-assessment-books?categoryId=12&size=10&page=0
 
-In the project directory, you can run:
+  I think it's better to use the permalink so that it becomes like this:
+  https://asia-southeast2-sejutacita-app.cloudfunctions.net/fee-assessment-books/12/10/0 so it's easier to read
+  
+2. when taking a category is also displayed the number of books contained in that category
+3. for the cors problem. it's better to talk about it when starting the project because it depends on the needs
+4. for search, it's better to have a Search API than just searching from the book data that has been displayed
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Thank you for the opportunity
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Syahril Syahputra
