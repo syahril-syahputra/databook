@@ -29,7 +29,7 @@ const Detail = props => {
             storage.splice(data, 1)
             setbookmarked(false)
         } else {
-            storage.push({ id: props.data.id })
+            storage.push(props.data)
             setbookmarked(true)
         }
         localStorage.setItem('bookmark', JSON.stringify(storage))

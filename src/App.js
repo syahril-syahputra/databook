@@ -1,5 +1,6 @@
 import React, { useReducer, createContext } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import BookMark from './screens/BookMark';
 import HomeScreen from './screens/HomeScreen';
 import ListBook from './screens/ListBook';
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="" element={<HomeScreen />}>
 
               <Route path="/" element={<ListBook />} />
+              <Route path="/bookmark" element={<BookMark />} />
               <Route path="/:category" element={<ListBook />} />
             </Route>
           
