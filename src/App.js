@@ -1,6 +1,7 @@
 import React, { useReducer, createContext } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen';
+import ListBook from './screens/ListBook';
 
 export const dataContext = createContext();
 
@@ -29,10 +30,13 @@ function App() {
     <BrowserRouter>
       <dataContext.Provider value={[state, dispatch]}>
       <Routes>
-          <Route path="/" >
-            <Route path="" element={<HomeScreen />} />
+            <Route path="" element={<HomeScreen />}>
+
+              <Route path="/" element={<ListBook />} />
+              <Route path="/:category" element={<ListBook />} />
+            </Route>
           
-          </Route>
+          
 
         </Routes>
       </dataContext.Provider>

@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
-import * as FaIcons from "react-icons/fa"; // disini diibuh dari {iconName} jadi * as FaIcons
+import * as FaIcons from "react-icons/fa"; 
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { dataContext } from '../App';
-import axios from 'axios';
 const SideBar = () => {
 
     const [data, dispatchData] = useContext(dataContext)
     const location = useLocation()
-    const [selected, setselected] = useState("/")
+    const [selected, setselected] = useState(location.pathname.split("/")[1])
     const [sideBar, setsideBar] = useState(0)
 
     const showSidebar = () => {
@@ -20,17 +18,10 @@ const SideBar = () => {
 
 
 
-
     useEffect(() => {
         location.pathname.split("/")[1] === "" ? setselected(1) : setselected(location.pathname.split("/")[1])
-        
-        axios.get("/fee-assessment-categories").then(response => {
-            dispatchData({ type: 'addCategory', payload: response.data })
-        }).catch(error => {
-            console.log("Cannot Get Data Form Server")
-        })
-        //    alert(props.params)
-    }, [location])
+       
+    }, [])
 
     
 
@@ -59,9 +50,9 @@ const SideBar = () => {
                             data.category.map((item, index) => {
                                 const itempath = "/" + item.id
                                 return <Link key={index} to={itempath} onClick={() => { setsideBar(false); setselected(item.id) }} className="  w-full flex items-center ">
-                                    <li key={index} className={"active:bg-gray-300 hover:rounded-md flex items-center hover:bg-gray-200 hover:border-red-300  w-full py-2 px-2 mb-2 align-middle " + (item.id === selected ? "bg-gray-500 rounded-md" : "")}>
+                                    <li key={index} className={"active:bg-gray-300 hover:rounded-md flex items-center hover:bg-gray-200 hover:border-red-300  w-full py-2 px-2 mb-2 align-middle " + (parseInt(item.id) === parseInt(selected) ? "bg-gray-500 rounded-md" : "")}>
                                         <span><FaIcons.FaCaretRight size={20} color="#AAAAAA" onClick={showSidebar} /></span>
-                                        <span className={"font-serif text-xs ml-2 font-bold " + (item.id === selected ? "text-white" : "text-gray-700 ")}>{item.name}</span>
+                                        <span className={"font-serif text-xs ml-2 font-bold " + (parseInt(item.id) === parseInt(selected) ? "text-white" : "text-gray-700 ")}>{item.name}</span>
                                     </li>
                                 </Link>
                             })
